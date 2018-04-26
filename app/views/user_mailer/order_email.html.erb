@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thank you for your order!</h1>
+    <p>
+      Order no.<%= @order.id %> has been placed.<br>
+    </p>
+    <div class="panel panel-default items">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th colspan="2">Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+            <%= render partial: 'line_item', collection: @order.line_items %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th colspan="4">
+            TOTAL:
+          </th>
+          <th>
+            <%= @order.total  %>
+          </th>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  
+    <p>Thanks you and have a great day!</p>
+  </body>
+</html>
