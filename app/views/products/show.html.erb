@@ -21,11 +21,45 @@
           <dt>Quantity</dt>
           <dd><%= @product.quantity %></dd>
           <dt>Price</dt>
-          <dd><%= @product.price %></dd>
+          <dd><%= humanized_money_with_symbol @product.price %></dd>
+          <dt>Average Rating</dt> 
+          <dd><% if @product.reviews.size > 0 %>
+                <%= (@product.reviews.average(:rating)).round(1) %>/5
+              <% else %>
+                This product has not yet been rated.
+              <% end %></dd> 
+          <% if current_user %>   
+            <dt>Add a Review:</dt>
+            <%= form_for :review, url: product_reviews_path(@product.id) do |f| %>
+              <dd>
+                <%= f.label :rating %><br>
+                <%= f.select :rating, ['1', '2', '3', '4', '5'] %>
+              </dd>
+              <dd>
+                <%= f.label :description %><br>
+                <%= f.text_area :description %>
+              </dd>
+              <dd>
+                <%= f.submit %>
+              </dd>
+            <% end %>
+          <% end %>
+            <dt>Reviews</dt>
+            <% if @product.reviews.size > 0 %>
+              <% @product.reviews.reverse_each do |review| %>
+                <dd><%= review.rating %>/5 "<%= review.description %>" 
+                <% if current_user %>
+                  <% if review.user_id == current_user.id %>
+                      <%= link_to 'Delete your review', [review.product, review], class: 'btn btn-sm btn-default', method: :delete, data: { confirm: "Are you sure?" } %>
+                  <% end %>
+                  <br></dd>
+                <% end %>
+              <% end %>
+            <% else %>
+              <dd>No reviews yet.</dd>
+            <% end %>
         </dl>
       </div>
     </div>
-
   </article>
-
 </section>

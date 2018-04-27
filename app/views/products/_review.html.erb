@@ -1,0 +1,12 @@
+<dt>Reviews</dt>
+  <% if @product.reviews.size > 0 %>
+    <% @product.reviews.reverse_each do |review| %>
+      <dd><%= review.rating %>/5 "<%= review.description %>" 
+      <% if review.user_id == current_user.id %>
+          <%= link_to fa_icon('trash'), [review.product, review], class: 'btn btn-sm btn-danger', method: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
+      <br></dd>
+    <% end %>
+  <% else %>
+    <dd>No reviews yet.</dd>
+  <% end %>
