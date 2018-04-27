@@ -6,7 +6,11 @@
 
   <div class="order-summary jumbotron">
     <h4>Thank you for your order!</h4>
-    <h5>An email confirmation has been sent to <%= @order.email %>.</h5>
+    <% if current_user %>
+      <h5>An email confirmation has been sent to <%= current_user.email %>.</h5>
+    <% else %>
+      <h5>Signup or Login to receive email confirmations for your order.</h5>
+    <% end %>
   </div>
 
   <div class="panel panel-default items">
