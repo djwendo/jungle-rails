@@ -42,7 +42,12 @@
             data-name="Jungle"
             data-description="New Jungle Order"
             data-locale="auto"
-            data-email="no-reply@jungle.com"
+            data-email=
+            <% if current_user %>
+              "<%=current_user.email%>"
+            <% else %>
+              "no-reply@jungle.com"
+            <% end %>
             data-currency="cad">
           </script>
         <% end %>
