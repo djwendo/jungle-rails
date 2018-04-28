@@ -1,6 +1,6 @@
 # Jungle
 
-A mini e-commerce application built with Rails 4.2. This LHL project involved inheriting code and tackling missing features and squashing bugs to build a stronger (though still not commercially viable) product.
+A mini e-commerce application built with Rails 4.2. This LHL project involved inheriting incomplete code and being asked to tackle missing features and squash bugs to deliver a stronger (though still not commercially viable) product.
 
 ## Final Product
 
