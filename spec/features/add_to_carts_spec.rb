@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Visitor adds product to cart", type: :feature, js: true do
+RSpec.feature "Visitor can add products to cart", type: :feature, js: true do
   
   before :each do
     @category = Category.create! name: 'Apparel'
@@ -19,9 +19,6 @@ RSpec.feature "Visitor adds product to cart", type: :feature, js: true do
   scenario "They add a product to cart" do
     visit root_path
     first('article.product').find_link('Add').click
-
-    sleep 2
-    save_screenshot 'cart.png'
 
     expect(page).to have_content 'My Cart (1)'
   end

@@ -16,12 +16,9 @@ RSpec.feature "Visitor navigates to product page", type: :feature, js: true do
     end
   end
 
-  scenario "They see a product page" do
+  scenario "They see a product's details" do
     visit root_path
     first('article.product').find_link('Details').click
-
-    sleep 2
-    save_screenshot 'jungle.png'
 
     expect(page).to have_css 'section.products-show'
   end
