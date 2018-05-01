@@ -35,6 +35,11 @@ RSpec.describe User, type: :model do
       expect(User.find_by_email(new_user.email)).to be nil
     end
 
+    it 'must have unique email address' do
+      new_user = User.new first_name: 'Another', last_name: 'User', email: 'newuser@user.com', password: 'password'
+      expect(User.find_by_email(new_user.email)).to be nil
+    end
+
     it 'must have password that meets minimum length' do
       @user.password = 'test'
       expect(@user.password.size > 6).to be false
